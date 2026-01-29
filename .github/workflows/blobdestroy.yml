@@ -1,4 +1,4 @@
-name: Destroy
+name: Destroyblob
 
 on:
   workflow_dispatch:
