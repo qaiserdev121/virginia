@@ -1,7 +1,6 @@
 ### 5. **outputs.tf**
-This file outputs the relevant information after deployment.
+# This file outputs the relevant information after deployment.
 
-```hcl
 # outputs.tf
 
 # Output the storage container URL

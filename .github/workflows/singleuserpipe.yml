@@ -1,5 +1,10 @@
-name: Destroyblob
 
+name: single User creation
+
+#on:
+#  push:
+#    branches:
+#      - mai
 on:
   workflow_dispatch:
 
@@ -8,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  destroy:
+  terraformjob:
     runs-on: ubuntu-latest
 
     env:
@@ -23,9 +28,13 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        working-directory: "containermodules"
         run: terraform init
+        working-directory: "singleuser"
 
-      - name: Terraform Destroy
-        working-directory: "containermodules"
-        run: terraform destroy -auto-approve
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: "singleuser"
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: "singleuser"
