@@ -15,4 +15,4 @@ vm_name        = "linux-free-vm"
 vm_size        = "Standard_B1s"
 
 admin_username = "azureuser"
-ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ..."
+ssh_public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMCXBzlMvAumLrvYbzDB2wq4Ks+sgyBWxr5k5Le5HRLb masoo@DESKTOP-6SIT3FC"
