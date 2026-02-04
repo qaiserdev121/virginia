@@ -3,7 +3,7 @@ tenant_domain = "muhammadmasoo121gmail.onmicrosoft.com"
 
 users = {
   
-    purple = {
+    purpleuser1 = {
     display_name = "purple"
     password     = "chunkie@123456!"
   }
