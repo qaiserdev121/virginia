@@ -1,5 +1,5 @@
 
-name: purpleuser
+name: user multiple
 
 #on:
 #  push:
@@ -29,12 +29,20 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: "purpleuser"
+        working-directory: " purpleuser = {
+    display_name = "purple"
+    password     = "chunkie@123456!"
+  }"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "purpleuser"
-
+        working-directory: " purpleuser = {
+    display_name = "purple"
+    password     = "chunkie@123456!"
+  }"
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: "purpleuser"
+        working-directory: " purpleuser = {
+    display_name = "purple"
+    password     = "chunkie@123456!"
+  }"
