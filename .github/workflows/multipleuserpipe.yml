@@ -1,5 +1,5 @@
 
-name: user multiple
+name: single User creation
 
 #on:
 #  push:
@@ -29,20 +29,11 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: " purpleuser = {
-    display_name = "purple"
-    password     = "chunkie@123456!"
-  }"
+        working-directory: "usermultiple"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: " purpleuser = {
-    display_name = "purple"
-    password     = "chunkie@123456!"
-  }"
+        working-directory: "usermultiple"
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: " purpleuser = {
-    display_name = "purple"
-    password     = "chunkie@123456!"
-  }"
+        working-directory: "usermultiple"
