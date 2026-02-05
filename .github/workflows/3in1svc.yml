@@ -1,5 +1,5 @@
 
-name: 3 in 1 old
+name: 3in1svc
 
 #on:
 #  push:
@@ -29,37 +29,37 @@ jobs:
 # user pipeline
       - name: Terraform Init
         run: terraform init
-        working-directory: "singleuser"
+        working-directory: "svcacUser"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "singleuser"
+        working-directory: "svcacUser"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: "singleuser"
+        working-directory: "svcacUser"
 
 # container pipeline        
       - name: Terraform Init
         run: terraform init
-        working-directory: "containermodules"
+        working-directory: "svccontainermodule"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "containermodules"
+        working-directory: "svccontainermodule"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: "containermodules"
+        working-directory: "svccontainermodule
 # role access        
       - name: Terraform Init
         run: terraform init
-        working-directory: "readmodule"
+        working-directory: "svcreadmodule"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "readmodule"
+        working-directory: "svcreadmodule"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: "readmodule"        
+        working-directory: "svcreadmodule"        
