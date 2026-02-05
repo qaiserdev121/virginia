@@ -29,11 +29,11 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: "svcacpipe"
+        working-directory: "svcacUser"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "svcacpipe"
+        working-directory: "svcacUser"
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: "svcacpipe"
+        working-directory: "svcacUser"
