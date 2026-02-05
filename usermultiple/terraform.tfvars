@@ -14,5 +14,9 @@ users = {
     red = {
     display_name = "red"
     password     = "chunkie@123456!"
-  }    
+  }
+  yellow = {
+    display_name = "yellow"
+    password     = "chunkie@123456!"
+  }        
 }
