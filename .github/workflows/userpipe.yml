@@ -29,12 +29,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: "usermodules/testmodules"
+        working-directory: "usermultiple"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "usermodules/testmodules"
+        working-directory: "usermultiple"
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: "usermodules/testmodules"
+        working-directory: "usermultiple"
