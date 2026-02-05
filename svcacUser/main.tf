@@ -1,14 +1,12 @@
+resource "azuread_application" "newapps" {
+  for_each = var.service_principals
 
-resource "azuread_user" "newusers" {
-  for_each = var.users
-
-  user_principal_name   = "${each.key}@${var.tenant_domain}"
-  display_name          = each.value.display_name
-  mail_nickname         = each.key
-  account_enabled       = true
-
-  password              = each.value.password
-  force_password_change = false
+  display_name = each.value.display_name
 }
-#var.users here refers directly to <variable "users"> in variables.tf
-#"newusers" here referes directly to "azuread_user.newusers" in outputs.tf in
+resource "azuread_service_principal" "newsps" {
+  for_each = azuread_application.newapps
+
+  application_id = each.value.application_id
+}
+#var.service_principals here refers directly to <variable "service_principals"> in variables.tf
+#"newapps" here referes directly to "azuread_user.newapps" in outputs.tf in

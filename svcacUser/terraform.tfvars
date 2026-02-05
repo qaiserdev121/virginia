@@ -1,10 +1,18 @@
-
-tenant_domain = "muhammadmasoo121gmail.onmicrosoft.com"
-
-users = {
-  
-    monkey = {
-    display_name = "Monkey"
-    password     = "chunkie@123456!"
+service_principals = {
+  app1 = {
+    display_name = "sp-app-1"
   }
-}
+  app2 = {
+    display_name = "sp-app-2"
+  }
+  app3 = {
+    display_name = "sp-app-3"
+  }
+  Monkey = {
+    display_name = "svc-monkey"
+  }
+
+}#keep this line, and above this line, you can add below block for any new user
+#  app3 = {
+#    display_name = "sp-app-3"
+#  }
