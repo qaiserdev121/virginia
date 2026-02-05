@@ -1,9 +1,9 @@
 service_principals = {
     Monkey = {
-    display_name = "svc-monkey"
+    display_name = "svcacmonkey"
   }
-
-}#keep this line, and above this line, you can add below block for any new user
+}
+#keep this line, and above this line, you can add below block for any new user
 #  app3 = {
 #    display_name = "sp-app-3"
 #  }
