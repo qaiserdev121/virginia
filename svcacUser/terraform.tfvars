@@ -1,14 +1,5 @@
 service_principals = {
-  app1 = {
-    display_name = "sp-app-1"
-  }
-  app2 = {
-    display_name = "sp-app-2"
-  }
-  app3 = {
-    display_name = "sp-app-3"
-  }
-  Monkey = {
+    Monkey = {
     display_name = "svc-monkey"
   }
 
