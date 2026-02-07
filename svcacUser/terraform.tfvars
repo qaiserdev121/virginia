@@ -3,6 +3,7 @@ service_principals = {
     display_name = "svcacMonkey"
   }
 }
+    tenant_domain = "muhammadmasoo121gmail.onmicrosoft.com"
 #keep this line, and above this line, you can add below block for any new user
 #  app3 = {
 #    display_name = "sp-app-3"
