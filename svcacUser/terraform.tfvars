@@ -1,11 +1,16 @@
 
 tenant_domain = "muhammadmasoo121gmail.onmicrosoft.com"
-users
+
+resource_group_name  = "ResourceGroup1"
+storage_account_name = "storageaccount3cat"
+container_name       = "scontainer1"
+
 service_principals = {
-    Monkey = {
-    display_name = "svcacMoonkey"
+  monkey = {
+    display_name = "svc-monkey"
   }
 }
+
 
 #keep this line, and above this line, you can add below block for any new user
 #  app3 = {
