@@ -37,3 +37,14 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: "monkeysvcacuser"
+      
+      - name: Terraform Init
+        run: terraform init
+        working-directory: "babymonkeysvcacuser"
+
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: "babymonkeysvcacuser"
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        working-directory: "babymonkeysvcacuser"        
