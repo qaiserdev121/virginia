@@ -1,5 +1,5 @@
 
-name: vm module
+name: Blobpipline
 
 #on:
 #  push:
@@ -29,11 +29,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: "linuxvmmodule"
+        working-directory: "containermodules"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "linuxvmmodule"
+        working-directory: "containermodules"
+
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: "linuxvmmodule"
+        working-directory: "containermodules"
