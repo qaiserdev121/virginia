@@ -9,7 +9,8 @@ admin_username      = "azureuser"
 
 # Authentication (recommended: SSH)
 disable_password_authentication = true
-ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQYOUR_PUBLIC_KEY_HERE"
+#ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQYOUR_PUBLIC_KEY_HERE"
+ssh_public_key_path = "C:/Users/masoo/.ssh/id_rsa.pub"
 
 # OS Image (Ubuntu LTS - free)
 publisher = "Canonical"
