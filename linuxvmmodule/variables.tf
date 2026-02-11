@@ -23,10 +23,11 @@ variable "admin_username" {
   type        = string
 }
 
-variable "ssh_public_key" {
-  description = "SSH public key"
+variable "ssh_public_key_path" {
+  description = "Path to SSH public key"
   type        = string
 }
+
 
 variable "vnet_address_space" {
   type = list(string)
