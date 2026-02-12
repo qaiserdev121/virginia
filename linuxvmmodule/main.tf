@@ -80,7 +80,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = var.vm_size   # Cheapest: Standard_B1ls
-  admin_username      = var.admin_username
+  admin_username      = "azureuser"
 
   network_interface_ids = [
     azurerm_network_interface.nic.id,
@@ -88,7 +88,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   # SSH authentication
   admin_ssh_key {
-    username   = var.admin_username
+    username   = "azureuser"
     public_key = var.ssh_public_key
 
   }
