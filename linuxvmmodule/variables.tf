@@ -1,38 +1,31 @@
-variable "location" {
-  description = "Azure region"
-  type        = string
-}
+#############################################################
+# variables.tf
+# This file defines all input variables so that
+# nothing is hardcoded in main.tf
+#############################################################
 
-variable "resource_group_name" {
-  description = "Resource group name"
-  type        = string
-}
+variable "resource_group_name" {}
+variable "location" {}
 
-variable "vm_name" {
-  description = "Virtual machine name"
-  type        = string
-}
-
-variable "vm_size" {
-  description = "VM size"
-  type        = string
-}
-
-variable "admin_username" {
-  description = "Admin username for VM"
-  type        = string
-}
-
-variable "ssh_public_key_path" {
-  description = "Path to SSH public key"
-  type        = string
-}
-
-
+variable "vnet_name" {}
 variable "vnet_address_space" {
   type = list(string)
 }
 
-variable "subnet_address_space" {
+variable "subnet_name" {}
+variable "subnet_address_prefix" {
   type = list(string)
+}
+
+variable "public_ip_name" {}
+variable "nsg_name" {}
+variable "nic_name" {}
+
+variable "vm_name" {}
+variable "vm_size" {}
+variable "admin_username" {}
+variable "ssh_public_key_path" {}
+
+variable "os_disk_size_gb" {
+  type = number
 }
