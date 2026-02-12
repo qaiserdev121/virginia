@@ -1,10 +1,5 @@
-
 name: vm module
 
-#on:
-#  push:
-#    branches:
-#      - mai
 on:
   workflow_dispatch:
 
@@ -29,15 +24,12 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: "linuxvmmodule"
+        working-directory: linuxvmmodule
 
-      - name: Terraform Plan
-        run: terraform plan
-        working-directory: "linuxvmmodule"
       - name: Terraform Plan
         run: terraform plan -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}"
-
+        working-directory: linuxvmmodule
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: "linuxvmmodule"
+        run: terraform apply -auto-approve -var="ssh_public_key=${{ secrets.SSH_PUBLIC_KEY }}"
+        working-directory: linuxvmmodule
