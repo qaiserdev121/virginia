@@ -1,31 +1,26 @@
-# General
+#############################################################
+# terraform.tfvars
+# This file provides actual values for variables
+# Cheapest cost configuration
+#############################################################
+
+resource_group_name = "rg-cheap-linux"
 location            = "eastus"
-resource_group_name = "rg-cheap-linux-vm"
 
-# VM Settings
-vm_name             = "cheap-linux-vm"
-vm_size             = "Standard_B1s"   # Cheapest burstable VM
-admin_username      = "azureuser"
+vnet_name            = "vnet-cheap-linux"
+vnet_address_space   = ["10.0.0.0/16"]
 
-# Authentication (recommended: SSH)
-disable_password_authentication = true
-#ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQYOUR_PUBLIC_KEY_HERE"
-ssh_public_key_path = "C:/Users/masoo/.ssh/id_rsa.pub"
+subnet_name           = "subnet-cheap-linux"
+subnet_address_prefix = ["10.0.1.0/24"]
 
-# OS Image (Ubuntu LTS - free)
-publisher = "Canonical"
-offer     = "0001-com-ubuntu-server-jammy"
-sku       = "22_04-lts-gen2"
-version   = "latest"
+public_ip_name = "pip-cheap-linux"
+nsg_name       = "nsg-cheap-linux"
+nic_name       = "nic-cheap-linux"
 
-# Disk
-os_disk_storage_account_type = "Standard_LRS"
-os_disk_size_gb              = 30
+vm_name        = "cheap-linux-vm"
+vm_size        = "Standard_B1ls"   # Cheapest VM size
+admin_username = "azureuser"
 
-# Networking
-vnet_name           = "vnet-cheap-linux"
-subnet_name         = "subnet-cheap-linux"
-address_space       = ["10.0.0.0/16"]
-subnet_prefix       = ["10.0.1.0/24"]
-public_ip_name      = "pip-cheap-linux"
-network_security_group_name = "nsg-cheap-linux"
+ssh_public_key_path = "C:/Users/YOUR_USERNAME/.ssh/id_rsa.pub"
+
+os_disk_size_gb = 30
