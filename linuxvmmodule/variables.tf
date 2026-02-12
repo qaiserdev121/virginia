@@ -24,7 +24,11 @@ variable "nic_name" {}
 variable "vm_name" {}
 variable "vm_size" {}
 variable "admin_username" {}
-variable "ssh_public_key_path" {}
+variable "ssh_public_key" {
+  description = "SSH Public Key string"
+  type        = string
+}
+
 
 variable "os_disk_size_gb" {
   type = number
