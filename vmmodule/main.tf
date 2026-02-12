@@ -1,29 +1,48 @@
+#############################################################
+# main.tf
+# This file creates all Azure infrastructure required
+# for a cheap Linux Virtual Machine.
+#############################################################
+
+# Create Resource Group
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
   location = var.location
 }
 
+# Create Virtual Network
 resource "azurerm_virtual_network" "vnet" {
   name                = var.vnet_name
-  address_space       = var.vnet_address_space
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
+  address_space       = var.vnet_address_space
 }
 
+# Create Subnet inside VNet
 resource "azurerm_subnet" "subnet" {
   name                 = var.subnet_name
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = var.subnet_address_space
+  address_prefixes     = var.subnet_address_prefix
 }
 
+# Create Public IP (Basic + Dynamic = Cheapest)
+resource "azurerm_public_ip" "pip" {
+  name                = var.public_ip_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Dynamic"
+  sku                 = "Basic"
+}
+
+# Create Network Security Group (Allow SSH only)
 resource "azurerm_network_security_group" "nsg" {
   name                = var.nsg_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
   security_rule {
-    name                       = "AllowSSH"
+    name                       = "Allow-SSH"
     priority                   = 1000
     direction                  = "Inbound"
     access                     = "Allow"
@@ -35,19 +54,7 @@ resource "azurerm_network_security_group" "nsg" {
   }
 }
 
-resource "azurerm_subnet_network_security_group_association" "nsg_assoc" {
-  subnet_id                 = azurerm_subnet.subnet.id
-  network_security_group_id = azurerm_network_security_group.nsg.id
-}
-
-resource "azurerm_public_ip" "pip" {
-  name                = var.public_ip_name
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
-  allocation_method   = "Static"
-  sku                 = "Standard"
-}
-
+# Create Network Interface
 resource "azurerm_network_interface" "nic" {
   name                = var.nic_name
   location            = azurerm_resource_group.rg.location
@@ -61,30 +68,42 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
+# Associate NSG with NIC
+resource "azurerm_network_interface_security_group_association" "nsg_assoc" {
+  network_interface_id      = azurerm_network_interface.nic.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
+}
+
+# Create Cheap Linux Virtual Machine
 resource "azurerm_linux_virtual_machine" "vm" {
   name                = var.vm_name
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
-  size                = var.vm_size
+  size                = var.vm_size   # Cheapest: Standard_B1ls
   admin_username      = var.admin_username
+
   network_interface_ids = [
-    azurerm_network_interface.nic.id
+    azurerm_network_interface.nic.id,
   ]
 
+  # SSH authentication
   admin_ssh_key {
     username   = var.admin_username
-    public_key = var.ssh_public_key
+    public_key = file(var.ssh_public_key_path)
   }
 
+  # Cheap OS disk
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
+    disk_size_gb         = var.os_disk_size_gb
   }
 
+  # Ubuntu 22.04 LTS Image
   source_image_reference {
     publisher = "Canonical"
     offer     = "0001-com-ubuntu-server-jammy"
-    sku       = "22_04-lts"
+    sku       = "22_04-lts-gen2"
     version   = "latest"
   }
 }

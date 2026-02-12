@@ -1,11 +1,14 @@
+#############################################################
+# outputs.tf
+# This file outputs important information after deployment
+#############################################################
+
+output "vm_public_ip" {
+  description = "Public IP address of the VM"
+  value       = azurerm_public_ip.pip.ip_address
+}
+
 output "vm_name" {
-  value = azurerm_linux_virtual_machine.vm.name
-}
-
-output "public_ip" {
-  value = azurerm_public_ip.pip.ip_address
-}
-
-output "ssh_command" {
-  value = "ssh ${var.admin_username}@${azurerm_public_ip.pip.ip_address}"
+  description = "Name of the Virtual Machine"
+  value       = azurerm_linux_virtual_machine.vm.name
 }
