@@ -21,6 +21,6 @@ vm_name        = "cheap-linux-vm"
 vm_size        = "Standard_B1ls"   # Cheapest VM size
 admin_username = "azureuser"
 
-ssh_public_key_path = "C:/Users/YOUR_USERNAME/.ssh/id_rsa.pub"
+ssh_public_key_path = "C:/Users/masoo/.ssh/id_rsa.pub"
 
 os_disk_size_gb = 30
