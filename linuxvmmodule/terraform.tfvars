@@ -21,6 +21,11 @@ vm_name        = "cheap-linux-vm"
 vm_size        = "Standard_B1ls"   # Cheapest VM size
 admin_username = "azureuser"
 
-ssh_public_key_path = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ...."
+ssh_public_key_path = "rsa-key-20260211 AAAAB3NzaC1yc2EAAAADAQABAAABAQCUTfdjRdN7Ff56PAEFkCoSABFaxKxPEIK/
+pPujj4EcIaWhmcafAb8GRAPvp/UUzukNu8lvjuSLP69LW8KuKaqrNUMS/+uOJyqz
+Cw8sSK4d4pjhazBDDO6uJZAV+0jn41ICv1f4DAkE6gQz+MGOhwm55C+YmJYBsV+U
+vugkMFp+YQq1pQUEvAQIJWAqrmsnb+8v4z+eYh2z+HAJS8uz6N7kvqv77EVsf+5b
+HQYKGemjqAbTo5GuzT8H2VcGjmxxqretpE+/12ZHrFrhX+5iv2mB3gcNDumNOmqc
+UbglKny+jgG/12STbG+LwXS+4nmJ/8Nbjpa3OMdxpzv4AWpoWOaf'
 
 os_disk_size_gb = 30
