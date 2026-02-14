@@ -31,6 +31,8 @@ jobs:
       - name: Terraform Init
         run: terraform init
         working-directory: "linuxvmmodule"
+      - name: Debug SSH Key Length
+        run: echo ${#TF_VAR_ssh_public_key}
 
       - name: Terraform Plan
         run: terraform plan
