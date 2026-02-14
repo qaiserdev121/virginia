@@ -75,7 +75,7 @@ resource "azurerm_network_interface_security_group_association" "nsg_assoc" {
 }
 
 # Create Cheap Linux Virtual Machine
-resource "azurerm_linux_virtual_machine" "vm" {
+  resource "azurerm_linux_virtual_machine" "vm" {
   name                = var.vm_name
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
@@ -89,7 +89,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   # SSH authentication
   admin_ssh_key {
     username   = "azureuser"
-    public_key = var.ssh_public_key
+    public_key = var.ssh_public_key ==""
  }
 
   # Cheap OS disk

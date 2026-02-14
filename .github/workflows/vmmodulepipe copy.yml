@@ -34,14 +34,9 @@ jobs:
       - name: Debug SSH Key Length
         run: echo ${#TF_VAR_ssh_public_key}
 
-      - name: Test SSH Variable
-        run: |
-        echo "Length:"
-        echo ${#TF_VAR_ssh_public_key}
-        echo "Value:"
-        echo "$TF_VAR_ssh_public_key"
+      - name: Terraform Plan
+        run: terraform plan
         working-directory: "linuxvmmodule"
-
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
