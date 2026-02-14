@@ -1,10 +1,5 @@
+name: Azure Linux VM Deploy
 
-name: vm module 
-
-#on:
-#  push:
-#    branches:
-#      - mai
 on:
   workflow_dispatch:
 
@@ -13,36 +8,33 @@ permissions:
   contents: read
 
 jobs:
-  terraformjob:
+  terraform:
     runs-on: ubuntu-latest
 
     env:
-      TF_VAR_ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
       ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
       ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       ARM_USE_OIDC: "true"
+      TF_VAR_ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - uses: hashicorp/setup-terraform@v3
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.7
 
       - name: Terraform Init
         run: terraform init
-        working-directory: "linuxvmmodule"
-      - name: Debug SSH Key Length
-        run: echo ${#TF_VAR_ssh_public_key}
+        working-directory: linuxvmmodule
 
-      - name: Test SSH Variable
-        run: |
-        echo "Length:"
-        echo ${#TF_VAR_ssh_public_key}
-        echo "Value:"
-        echo "$TF_VAR_ssh_public_key"
-        working-directory: "linuxvmmodule"
-
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        working-directory: linuxvmmodule
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
-        working-directory: "linuxvmmodule"
+        run: terraform apply -auto-approve tfplan
+        working-directory: linuxvmmodule
