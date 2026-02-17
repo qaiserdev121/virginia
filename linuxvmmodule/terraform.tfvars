@@ -5,7 +5,7 @@
 #############################################################
 
 resource_group_name = "rg-cheap-linux"
-location            = "eastus"
+location            = "eastus2"
 
 vnet_name            = "vnet-cheap-linux"
 vnet_address_space   = ["10.0.0.0/16"]
