@@ -89,7 +89,7 @@ resource "azurerm_network_interface_security_group_association" "nsg_assoc" {
   # SSH authentication
   admin_ssh_key {
     username   = "azureuser"
-    public_key = var.ssh_public_key ==""
+    public_key = var.ssh_public_key
  }
 
   # Cheap OS disk
