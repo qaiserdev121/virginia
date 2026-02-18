@@ -40,4 +40,5 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+        continue-on-error: false
         working-directory: "linuxvmmodule"
