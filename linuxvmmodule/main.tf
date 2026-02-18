@@ -10,24 +10,20 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-# Create Virtual Network
 resource "azurerm_virtual_network" "vnet" {
-  name                = var.vnet_name
+  name                = "vnet-cheap-linux"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  address_space       = var.vnet_address_space
+  address_space       = ["10.0.0.0/16"]
 }
 
-# Create Subnet inside VNet
 resource "azurerm_subnet" "subnet" {
-  name                 = var.subnet_name
+  name                 = "subnet-cheap-linux"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = var.subnet_address_prefix
-  depends_on = [
-  azurerm_virtual_network.vnet
-]
+  address_prefixes     = ["10.0.1.0/24"]
 }
+
 
 # Create Public IP (Basic + Dynamic = Cheapest)
 resource "azurerm_public_ip" "pip" {
