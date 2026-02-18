@@ -56,7 +56,8 @@ resource "azurerm_network_security_group" "nsg" {
 
 # Create Network Interface
 resource "azurerm_network_interface" "nic" {
-  name                = var.nic_name
+  name                = "nic-cheap-linux"
+  #name                = var.nic_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
