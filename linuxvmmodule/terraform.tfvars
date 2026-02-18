@@ -18,7 +18,7 @@ nsg_name       = "nsg-cheap-linux"
 nic_name       = "nic-cheap-linux"
 
 vm_name        = "cheap-linux-vm"
-vm_size        = "Standard_B1ls"   # Cheapest VM size
+vm_size        = "Standard_B2s"   # Cheapest VM size
 admin_username = "azureuser"
 
 ssh_public_key_path = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCWMcXIABYEum5soQNgQVEk3PQ0qruSPg57ZPOQmkVB0xn0qFHpWgbDiWJ+cghdT5kCK6uNEIw0UflVqV655m1NdVwgoQCe1nz6tBFb8ns4f4ZvvQ//BAj0mcW734E0de9LKjfPeE6f9s0GHqcfaObbqsYN5hXhQ/SKsFnoj2YX+OHP+ZN5gfNwX9GvLmBK8V+UzZthl6YAm/DjFKRxHscYYVXkWl6CgvGYXuCFpSQCCBIwxjdTRGypvA/1NScRSlyK78Y4tifeV+G8dOYkj+1ujgSEiGbOhMA6DeJnJYJ1a4qCXTHshekoDSYYu3LtCbFcwhoRUdhfp7oP8okZG7E3 rsa-key-20260216"
