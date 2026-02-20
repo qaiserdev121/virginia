@@ -1,6 +1,5 @@
-  contents: read
 
-name: container module 
+name: vmcontainer
 
 #on:
 #  push:
@@ -18,7 +17,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      TF_VAR_ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
       ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
       ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
@@ -31,15 +29,11 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: "containermodule"
-      - name: Debug SSH Key Length
-        
+        working-directory: "containermodules"
 
       - name: Terraform Plan
         run: terraform plan
-        working-directory: "containermodule"
-
+        working-directory: "containermodules"
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        continue-on-error: false
-        working-directory: "containermodule"
+        working-directory: "containermodules"
