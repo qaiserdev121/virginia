@@ -1,5 +1,10 @@
-name: Azure Linux VM
 
+name: vm module 
+
+#on:
+#  push:
+#    branches:
+#      - mai
 on:
   workflow_dispatch:
 
@@ -8,33 +13,32 @@ permissions:
   contents: read
 
 jobs:
-  terraform:
+  terraformjob:
     runs-on: ubuntu-latest
 
     env:
+      TF_VAR_ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
       ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
       ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
       ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
       ARM_USE_OIDC: "true"
-      TF_VAR_ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-        #  terraform_version: 1.7.7
+      - uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
         run: terraform init
-        working-directory: linuxvmmodule
+        working-directory: "linuxvmmodule"
+      - name: Debug SSH Key Length
+        run: echo ${#TF_VAR_ssh_public_key}
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
-        working-directory: linuxvmmodule
+        run: terraform plan
+        working-directory: "linuxvmmodule"
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve tfplan
-        working-directory: linuxvmmodule
+        run: terraform apply -auto-approve
+        continue-on-error: false
+        working-directory: "linuxvmmodule"

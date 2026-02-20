@@ -1,35 +1,49 @@
 
 ############################################
 # Resource Group
-## so this first section is creating an RG called yellow-storage-rg, and if you dont create 
-##then you change values here to mention the existing RG.
 ############################################
-resource "azurerm_resource_group" "tf_yellow_rg" {
-  name     = var.resource_group_name
-  location = var.location
+resource "azurerm_resource_group" "yellow_rg" {
+  name     = "yellow-container-rg"
+  location = var.location # blue
 }
 
 ############################################
-# Storage Account
-# Standard / LRS = cheapest
-##this creates storage account, you mention values below, the values could be of new or existing rg,
-##whatever you defined above
+# Azure Container Group (ACI)
+# This runs a single container directly
 ############################################
-resource "azurerm_storage_account" "tf_yellow_sa" {
-  name                     = var.storage_account_name
-  resource_group_name      = azurerm_resource_group.tf_yellow_rg.name
-  location                 = azurerm_resource_group.tf_yellow_rg.location
+resource "azurerm_container_group" "yellow_container" {
+  name                = "yellow-container"
+  location            = azurerm_resource_group.yellow_rg.location
+  resource_group_name = azurerm_resource_group.yellow_rg.name
 
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
+  # Linux container
+  os_type = "Linux"
 
-############################################
-# Blob Container
-############################################
-#this below line says go create storage containger and give it local name of tf_yellow_container
-resource "azurerm_storage_container" "tf_yellow_container" {
-  name                  = var.container_name
-  storage_account_name  = azurerm_storage_account.tf_yellow_sa.name
-  container_access_type = "private"
+  ##########################################
+  # Networking
+  # Public IP so you can hit it from browser
+  ##########################################
+  ip_address_type = "Public"
+  dns_name_label  = var.dns_name_label # blue (must be globally unique per region)
+
+  ##########################################
+  # Container definition
+  ##########################################
+  container {
+    name   = "yellow-app"
+    image  = var.container_image # blue
+    cpu    = 0.5                  # cheapest usable
+    memory = 1.0                  # GB
+
+    ports {
+      port     = 80
+      protocol = "TCP"
+    }
+  }
+
+  ##########################################
+  # Restart policy
+  # OnFailure or Always are common
+  ##########################################
+  restart_policy = "Always"
 }
