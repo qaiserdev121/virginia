@@ -9,7 +9,7 @@ container_group_name = "aci-cheap-linux"
 
 # Container
 container_name = "nginx-container"
-container_image = "nginx:latest"
+container_image = "mcr.microsoft.com/azuredocs/aci-helloworld"
 
 # CPU & Memory
 cpu    = 1
