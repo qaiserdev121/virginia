@@ -1,5 +1,29 @@
+# Resource Group
+resource_group_name = "rg-cheap-linux"
 
-location              = "eastus"
-storage_account_name  = "yelowstorage12345"
-container_name        = "yellow-container"
-resource_group_name   = "yellow-storage-rg"
+# Location (must match your existing RG region)
+location = "centralus"
+
+# Container Group
+container_group_name = "aci-cheap-linux"
+
+# Container
+container_name = "nginx-container"
+container_image = "nginx:latest"
+
+# CPU & Memory
+cpu    = 1
+memory = 1.5
+
+# Networking
+dns_name_label = "cheaplinuxcontainer123"   # must be globally unique
+ip_address_type = "Public"
+os_type = "Linux"
+
+# Ports
+container_port = 80
+
+# Environment Variables (optional)
+environment_variables = {
+  ENV = "dev"
+}

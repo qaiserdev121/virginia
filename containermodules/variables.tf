@@ -1,35 +1,27 @@
-
 ############################################
 # Azure region
 ############################################
 variable "location" {
   description = "Azure region"
   type        = string
-##  default     = "eastus" # blue
-##commenting above will make it go to terraform.tfvars to look for values, in this case eastus value
+  default     = "eastus" # blue
 }
 
 ############################################
-# Storage account name
-# MUST be globally unique and lowercase
+# Public DNS label
+# Must be unique within the region
 ############################################
-variable "storage_account_name" {
-  description = "Globally unique storage account name"
+variable "dns_name_label" {
+  description = "DNS label for container public endpoint"
   type        = string
-##  default     = "yellowstorage12345" # blue (change this)
-##commenting above will make it go to terraform.tfvars to look for values
+  default     = "yellow-aci-demo" # blue (change if conflict)
 }
 
 ############################################
-# Blob container name
+# Container image
 ############################################
-variable "container_name" {
-  description = "Blob container name"
+variable "container_image" {
+  description = "Container image to run"
   type        = string
-##  default     = "yellow-container" # blue
-##commenting above will make it go to terraform.tfvars to look for values
-}
-variable "resource_group_name" {
-  description = "Name of the Azure Resource Group"
-  type        = string
+  default     = "nginx:latest" # blue
 }
