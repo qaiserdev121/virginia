@@ -1,4 +1,4 @@
-name: container VM
+name: container
 
 on:
   workflow_dispatch:
